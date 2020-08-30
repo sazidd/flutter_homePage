@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:home_page/components/customDrawer.dart';
-
+import 'package:home_page/pages/homePage.dart';
 
 void main() => runApp(MyApp());
 
@@ -9,7 +8,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: CustomDrawer(),
+      home: HomePage(),
     );
   }
 }

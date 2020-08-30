@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:foldable_sidebar/foldable_sidebar.dart';
 import 'package:home_page/components/categories.dart';
+import 'package:home_page/components/drawer.dart';
 import 'package:home_page/components/itemCart.dart';
 import 'package:home_page/confiq.dart';
 import 'package:home_page/models/products.dart';
@@ -23,35 +24,37 @@ class _HomePageState extends State<HomePage> {
           "Home",
           style: TextStyle(color: Colors.black, fontWeight: FontWeight.w700),
         ),
+        iconTheme: new IconThemeData(color: Colors.black),
       ),
+      drawer: AppDrawer(),
       body: Column(
-          children: [
-            _searchBar(),
-            Categories(),
-            _buildOfferContainer(),
-            SizedBox(
-      height: 5,
+        children: [
+          _searchBar(),
+          Categories(),
+          _buildOfferContainer(),
+          SizedBox(
+            height: 5,
+          ),
+          _buildPopularBar(),
+          Expanded(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              child: GridView.builder(
+                itemCount: product.length,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  mainAxisSpacing: 20,
+                  crossAxisSpacing: 20,
+                  childAspectRatio: 0.75,
+                ),
+                itemBuilder: (context, index) => ItemCart(
+                  product: product[index],
+                ),
+              ),
             ),
-            _buildPopularBar(),
-            Expanded(
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 20),
-        child: GridView.builder(
-          itemCount: product.length,
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            mainAxisSpacing: 20,
-            crossAxisSpacing: 20,
-            childAspectRatio: 0.75,
           ),
-          itemBuilder: (context, index) => ItemCart(
-            product: product[index],
-          ),
-        ),
+        ],
       ),
-            ),
-          ],
-        ),
     );
   }
 
